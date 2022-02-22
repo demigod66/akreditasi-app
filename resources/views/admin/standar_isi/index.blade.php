@@ -7,6 +7,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="float-right">
+                    <a href="{{ url('admin/standar_isi/create') }}" class="btn btn-primary btn-sm">Tambah Data</a>
                 </div>
             </div>
 
@@ -28,7 +29,9 @@
                     <thead>
                         <tr>
                             <th width="10%">No</th>
-                            <th>Standar Isi</th>
+                            <th>Jenis Standar Isi</th>
+                            <th>Tahun Ajaran</th>
+                            <th>Ditambahkan</th>
                             <th>File</th>
                             <th width="10%">Aksi</th>
                         </tr>
@@ -38,12 +41,17 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $si->nama_si }}</td>
-                            <td><a href="{{ url('/admin/standar_isi/view') }}" class="btn btn-warning btn-sm"><i
+                            <td>{{ $si->tahun }}</td>
+                            <td>{{ $si->created_at }}</td>
+                            <td>
+                                <a href="{{ url('/admin/standar_isi/view', $si->id) }}" class="btn btn-warning btn-sm"><i
                                         class="fas fa-file"></i></a>
                             </td>
                             <td>
+                                @can('edit content standar isi dan standar proses', 'StandarIsiController','StandarProsesController')
                                 <a href="{{ url('admin/standar_isi/edit', $si->id) }}" class="btn btn-primary btn-sm"><i
                                         class="fas fa-edit"></i></a>
+                                @endcan
                             </td>
                         </tr>
                         @endforeach

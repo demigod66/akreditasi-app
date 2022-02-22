@@ -12,6 +12,7 @@ class StandarIsi extends Model
 
     protected $fillable = [
         'nama_si',
+        'tahun',
         'file'
     ];
 }

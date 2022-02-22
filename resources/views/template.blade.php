@@ -100,6 +100,7 @@
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
+                            @can('edit content standar isi dan standar proses', 'StandarIsiController','StandarProsesController')
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="{{ url('admin/standar_isi') }}" class="nav-link">
@@ -116,6 +117,7 @@
                                     </a>
                                 </li>
                             </ul>
+                            @endcan
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="{{ url('admin/standar_penilaian') }}" class="nav-link">
