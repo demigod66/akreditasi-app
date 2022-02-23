@@ -7,6 +7,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="float-right">
+                    <a href="{{ url('admin/standar_penilaian/create') }}" class="btn btn-primary btn-sm">Tambah Data</a>
                 </div>
             </div>
 

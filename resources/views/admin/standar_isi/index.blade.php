@@ -1,4 +1,4 @@
-@extends('template');
+@extends('template')
 @section('content')
 
 
@@ -51,6 +51,9 @@
                                 @can('edit content standar isi dan standar proses', 'StandarIsiController','StandarProsesController')
                                 <a href="{{ url('admin/standar_isi/edit', $si->id) }}" class="btn btn-primary btn-sm"><i
                                         class="fas fa-edit"></i></a>
+                                        <br>
+                                <a href="{{ url('admin/standar_isi/destroy', $si->id) }}" class="btn btn-danger btn-sm"><i
+                                            class="fas fa-trash"></i></a>
                                 @endcan
                             </td>
                         </tr>

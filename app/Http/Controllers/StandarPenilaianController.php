@@ -5,12 +5,30 @@ namespace App\Http\Controllers;
 use App\Models\StandarPenilaian;
 use Illuminate\Http\Request;
 
+
 class StandarPenilaianController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['role:PIC_2|super-admin', 'permission:tambah content standar penilaian dan standar sarana']);
+        $this->middleware(['role:PIC_2|super-admin', 'permission:edit content standar penilaian dan standar sarana']);
+        $this->middleware(['role:PIC_2|super-admin', 'permission:hapus content standar penilaian dan standar sarana']);
+    }
+
     public function index()
     {
         $standar_penilaian = StandarPenilaian::all();
         return view('admin.standar_penilaian.index', compact('standar_penilaian'));
+    }
+
+    public function create()
+    {
+        return view('admin.standar_penilaian.create');
+    }
+
+    public function store(Request $request)
+    {
     }
 
 

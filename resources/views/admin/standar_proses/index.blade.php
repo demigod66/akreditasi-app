@@ -7,6 +7,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="float-right">
+                    <a href="{{ url('admin/standar_proses/create') }}" class="btn btn-primary btn-sm">Tambah Data</a>
                 </div>
             </div>
 
@@ -29,6 +30,8 @@
                         <tr>
                             <th width="10%">No</th>
                             <th>Standar Proses</th>
+                            <th>Tahun Ajaran</th>
+                            <th>Ditambahkan</th>
                             <th>File</th>
                             <th width="10%">Aksi</th>
                         </tr>
@@ -38,12 +41,16 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $sp->nama_sp }}</td>
-                            <td><a href="{{ url('/admin/standar_proses/view') }}" class="btn btn-warning btn-sm"><i
+                            <td>{{ $sp->tahun }}</td>
+                            <td>{{ $sp->created_at }}</td>
+                            <td><a href="{{ url('admin/standar_proses/view', $sp->id) }}" class="btn btn-warning btn-sm"><i
                                         class="fas fa-file"></i></a>
                             </td>
                             <td>
                                 <a href="{{ url('admin/standar_proses/edit', $sp->id) }}"
                                     class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
+                                <a href="{{ url('admin/standar_proses/destroy', $sp->id) }}" class="btn btn-danger btn-sm"><i
+                                    class="fas fa-trash"></i></a>
                             </td>
                         </tr>
                         @endforeach
@@ -51,7 +58,7 @@
                 </table>
             </div>
         </div>
-    </div>
+    </div>ss
 </div>
 
 

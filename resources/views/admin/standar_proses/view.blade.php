@@ -20,8 +20,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.7/pdfobject.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.7/pdfobject.min.js"></script>
 
+
+
 <script>
-    PDFObject.embed("{{ route('standar-proses.show-pdf', $standar_isi->id) }}", "#pdf-viewer");
+    PDFObject.embed("{{ route('standar-proses.show-pdf', $standar_proses->id) }}", "#pdf-viewer");
 </script>
 
 

@@ -111,13 +111,5 @@ class PermissionDemoSeeder extends Seeder
             'password' => bcrypt('12345678')
         ]);
         $user->assignRole($kepsek);
-
-
-        $user = User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@smkm3.com',
-            'password' => bcrypt('12345678')
-        ]);
-        $user->assignRole($pic3);
     }
 }

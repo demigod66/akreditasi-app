@@ -17,17 +17,11 @@
                             class="form-horizontal" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label>Standar Proses</label>
-                                <select name="nama_si" id="nama_si" class="form-control">
-                                    <option value="Program tahunan/program semester.">Program tahunan/program semester.</option>
-                                    <option value="Silabus">Silabus</option>
-                                    <option value="RPP">RPP</option>
-                                    <option value="RPP">RPP</option>
-                                    <option value="Buku Siswa & Guru">Buku Siswa & Guru</option>
-                                    <option value="Lembar tugas terstruktur dan kegiatan mandiri untuk siswa">Lembar tugas terstruktur dan kegiatan mandiri untuk siswa</option>
-                                    <option value="Handout">Handout</option>
-                                    <option value="Alat evaluasi dan buku nilai">Alat evaluasi dan buku nilai</option>
-                                </select>
+                                <label>Jenis Standar Isi</label>
+                                <input type="text" class="form-control" name="nama_si" value="{{ $standar_isi->nama_si }}">
+                                @error('nama_si')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-md-6">

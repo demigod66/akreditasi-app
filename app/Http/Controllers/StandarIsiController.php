@@ -58,8 +58,7 @@ class StandarIsiController extends Controller
     {
         request()->validate([
             'nama_si' => 'required',
-            'file' => 'required',
-            'tahun' => 'required'
+            'tahun' => 'required|numeric'
         ]);
 
         $standar_isi = StandarIsi::findorfail($id);
@@ -87,5 +86,13 @@ class StandarIsiController extends Controller
     {
         $standar_isi = StandarIsi::where('id', $id)->first();
         return view('admin.standar_isi.view', compact('standar_isi'));
+    }
+
+    public function destroy($id)
+    {
+        $standar_isi = StandarIsi::find($id);
+        $standar_isi->delete();
+
+        return redirect('/admin/standar_isi')->with('sukses', 'data berhasil di hapus');
     }
 }
