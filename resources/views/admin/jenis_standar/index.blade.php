@@ -1,11 +1,11 @@
-@extends('template')
+@extends('template');
 @section('content')
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
                     <div class="float-right">
-                        <a href="{{ url('admin/standar_isi/create') }}" class="btn btn-primary btn-sm">Tambah Data</a>
+                        <a href="{{ url('admin/jenis_standar/create') }}" class="btn btn-primary btn-sm">Tambah Data</a>
                     </div>
                 </div>
 
@@ -28,29 +28,21 @@
                         <thead>
                             <tr>
                                 <th width="10%">No</th>
-                                <th>Jenis Standar Isi</th>
+                                <th>Jenis Standar</th>
                                 <th>Tahun Ajaran</th>
-                                <th>Ditambahkan</th>
-                                <th>File</th>
                                 <th width="10%">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($standar_isi as $si)
+                            @foreach ($data as $js)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $si->jenis_standar }}</td>
-                                    <td>{{ $si->tahun }}</td>
-                                    <td>{{ $si->created_at }}</td>
+                                    <td>{{ $js->jenis_standar }}</td>
+                                    <td>{{ $js->tahun }}</td>
                                     <td>
-                                        <a href="{{ url('/admin/standar_isi/view', $si->id) }}"
-                                            class="btn btn-warning btn-sm"><i class="fas fa-file"></i></a>
-                                    </td>
-                                    <td>
-                                        <a href="{{ url('admin/standar_isi/edit', $si->id) }}"
+                                        <a href="{{ url('/admin/jenis_standar/edit', $js->id) }}"
                                             class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
-                                        <br>
-                                        <a href="{{ url('admin/standar_isi/destroy', $si->id) }}"
+                                        <a href="{{ url('/admin/jenis_standar/destroy', $js->id) }}"
                                             class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>

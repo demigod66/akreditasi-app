@@ -29,6 +29,11 @@ class StandarPenilaianController extends Controller
 
     public function store(Request $request)
     {
+        request()->validate([
+            'nama_penilaian' => 'required',
+            'tahun' => 'required',
+            'file' => 'required',
+        ]);
     }
 
 
@@ -42,7 +47,7 @@ class StandarPenilaianController extends Controller
     {
         request()->validate([
             'nama_penilaian' => 'required',
-            'file' => 'required',
+            'tahun' => 'required'
         ]);
 
         $standar_penilaian = StandarPenilaian::findorfail($id);

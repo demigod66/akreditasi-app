@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JenisStandar;
 use App\Models\StandarIsi;
 use Illuminate\Http\Request;
 
@@ -14,17 +15,20 @@ class StandarIsiController extends Controller
         $this->middleware(['role:PIC_1|super-admin', 'permission:tambah content standar isi dan standar proses']);
         $this->middleware(['role:PIC_1|super-admin', 'permission:edit content standar isi dan standar proses']);
         $this->middleware(['role:PIC_1|super-admin', 'permission:hapus content standar isi dan standar proses']);
+
+        $this->data = new StandarIsi();
     }
 
     public function index()
     {
-        $standar_isi = StandarIsi::all();
+        $standar_isi = $this->data->getJenisStandar();
         return view('admin.standar_isi.index', compact('standar_isi'));
     }
 
     public function create()
     {
-        return view('admin.standar_isi.create');
+        $data = JenisStandar::all();
+        return view('admin.standar_isi.create', compact('data'));
     }
 
     public function store(Request $request)
@@ -50,7 +54,8 @@ class StandarIsiController extends Controller
     public function edit($id)
     {
         $standar_isi = StandarIsi::findorfail($id);
-        return view('admin.standar_isi.edit', compact('standar_isi'));
+        $data = JenisStandar::all();
+        return view('admin.standar_isi.edit', compact('standar_isi', 'data'));
     }
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JenisStandar;
 use App\Models\StandarProses;
 use Illuminate\Http\Request;
 
@@ -15,19 +16,22 @@ class StandarProsesController extends Controller
         $this->middleware(['role:PIC_1|super-admin', 'permission:tambah content standar isi dan standar proses']);
         $this->middleware(['role:PIC_1|super-admin', 'permission:edit content standar isi dan standar proses']);
         $this->middleware(['role:PIC_1|super-admin', 'permission:hapus content standar isi dan standar proses']);
+
+        $this->data = new StandarProses();
     }
 
 
     public function index()
     {
-        $standar_proses = StandarProses::all();
+        $standar_proses = $this->data->getJenisStandar();
         return view('admin.standar_proses.index', compact('standar_proses'));
     }
 
 
     public function create()
     {
-        return view('admin.standar_proses.create');
+        $data = JenisStandar::all();
+        return view('admin.standar_proses.create', compact('data'));
     }
 
     public function store(Request $request)
@@ -55,7 +59,8 @@ class StandarProsesController extends Controller
     public function edit($id)
     {
         $standar_proses = StandarProses::findorfail($id);
-        return view('admin.standar_proses.edit', compact('standar_proses'));
+        $data = JenisStandar::all();
+        return view('admin.standar_proses.edit', compact('standar_proses', 'data'));
     }
 
     public function update(Request $request, $id)
@@ -72,9 +77,9 @@ class StandarProsesController extends Controller
             $new_file = time() . $file->getClientOriginalName();
             $file->move('uploads/standar_proses', $new_file);
 
-            if ($standar_proses->file != '') {
-                unlink(public_path('uploads/standar_proses/' . $standar_proses->file));
-            }
+            // if ($standar_proses->file != '') {
+            //     unlink(public_path('uploads/standar_proses/' . $standar_proses->file));
+            // }
         }
 
         $standar_proses->nama_sp = $request->nama_sp;

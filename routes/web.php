@@ -30,6 +30,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+// PIC 1
 Route::group(['middleware' => ['role:PIC_1|super-admin']], function () {
     // Standar Isi
     Route::get('/admin/standar_isi', 'StandarIsiController@index');
@@ -59,10 +62,13 @@ Route::group(['middleware' => ['role:PIC_1|super-admin']], function () {
 });
 
 
+
+// PIC 2
 Route::group(['middleware' => ['role:PIC_2|super-admin']], function () {
     // standar penilaian
     Route::get('/admin/standar_penilaian', 'StandarPenilaianController@index');
     Route::get('admin/standar_penilaian/create', 'StandarPenilaianController@create');
+    Route::post('admin/standar_penilaian/store', 'StandarPenilaianController@store');
     Route::get('/admin/standar_penilaian/edit/{id}', 'StandarPenilaianController@edit');
     Route::post('/admin/standar_penilaian/update/{id}', 'StandarPenilaianController@update');
     Route::get('/admin/standar_penilaian/view', 'StandarPenilaianController@view');
@@ -84,48 +90,69 @@ Route::group(['middleware' => ['role:PIC_2|super-admin']], function () {
 
 
 
-// standar biaya
-Route::get('/admin/standar_biaya', 'StandarBiayaController@index');
-Route::get('/admin/standar_biaya/edit/{id}', 'StandarBiayaController@edit');
-Route::post('/admin/standar_biaya/update/{id}', 'StandarBiayaController@update');
-Route::get('/admin/standar_biaya/view', 'StandarBiayaController@view');
-Route::get('/show-standar-biaya-pdf/{id}', function ($id) {
-    $file_standar_biaya = StandarBiaya::find($id);
-    return response()->file(public_path('uploads/standar_biaya/' . $file_standar_biaya->file));
-})->name('standar-biaya.show-pdf');
+Route::group(['middleware' => ['role:PIC_3|super-admin']], function () {
 
-// standar pengelolaan
-Route::get('/admin/standar_pengelolaan', 'StandarPengelolaanController@index');
-Route::get('/admin/standar_pengelolaan/edit/{id}', 'StandarPengelolaanController@edit');
-Route::post('/admin/standar_pengelolaan/update/{id}', 'StandarPengelolaanController@update');
-Route::get('/admin/standar_pengelolaan/view', 'StandarPengelolaanController@view');
-Route::get('/show-standar-pengelolaan-pdf/{id}', function ($id) {
-    $file_standar_pengelolaan = StandarPengelolaan::find($id);
-    return response()->file(public_path('uploads/standar_pengelolaan/' . $file_standar_pengelolaan->file));
-})->name('standar-pengelolaan.show-pdf');
+    // Standar Pembiayaan
+    Route::get('/admin/standar_biaya', 'StandarBiayaController@index');
+    Route::get('/admin/standar_biaya/edit/{id}', 'StandarBiayaController@edit');
+    Route::post('/admin/standar_biaya/update/{id}', 'StandarBiayaController@update');
+    Route::get('/admin/standar_biaya/view', 'StandarBiayaController@view');
+    Route::get('/show-standar-biaya-pdf/{id}', function ($id) {
+        $file_standar_biaya = StandarBiaya::find($id);
+        return response()->file(public_path('uploads/standar_biaya/' . $file_standar_biaya->file));
+    })->name('standar-biaya.show-pdf');
+
+    // standar pengelolaan
+    Route::get('/admin/standar_pengelolaan', 'StandarPengelolaanController@index');
+    Route::get('/admin/standar_pengelolaan/edit/{id}', 'StandarPengelolaanController@edit');
+    Route::post('/admin/standar_pengelolaan/update/{id}', 'StandarPengelolaanController@update');
+    Route::get('/admin/standar_pengelolaan/view', 'StandarPengelolaanController@view');
+    Route::get('/show-standar-pengelolaan-pdf/{id}', function ($id) {
+        $file_standar_pengelolaan = StandarPengelolaan::find($id);
+        return response()->file(public_path('uploads/standar_pengelolaan/' . $file_standar_pengelolaan->file));
+    })->name('standar-pengelolaan.show-pdf');
+});
 
 
-// standar kompetensi lulus
-Route::get('/admin/standar_lulusan', 'StandarLulusanController@index');
-Route::get('/admin/standar_lulusan/edit/{id}', 'StandarLulusanController@edit');
-Route::post('/admin/standar_lulusan/update/{id}', 'StandarLulusanController@update');
-Route::get('/admin/standar_lulusan/view', 'StandarLulusanController@view');
-Route::get('/show-standar-pengelolaan-pdf/{id}', function ($id) {
-    $file_standar_lulusan = StandarLulusan::find($id);
-    return response()->file(public_path('uploads/standar_lulusan/' . $file_standar_lulusan->file));
-})->name('standar-lulusan.show-pdf');
 
-// standar pendidik
+Route::group(['middleware' => ['role:PIC_4|super-admin']], function () {
 
-Route::get('/admin/standar_pendidik', 'StandarPendidikController@index');
-Route::get('/admin/standar_pendidik/edit/{id}', 'StandarPendidikController@edit');
-Route::post('/admin/standar_pendidik/update/{id}', 'StandarPendidikController@update');
-Route::get('/admin/standar_pendidik/view', 'StandarPendidikController@view');
-Route::get('/show-standar-pendidik-pdf/{id}', function ($id) {
-    $file_standar_pendidik = StandarPendidik::find($id);
-    return response()->file(public_path('uploads/standar_pendidik/' . $file_standar_pendidik->file));
-})->name('standar-pendidik.show-pdf');
+    // standar kompetensi lulus
+    Route::get('/admin/standar_lulusan', 'StandarLulusanController@index');
+    Route::get('/admin/standar_lulusan/edit/{id}', 'StandarLulusanController@edit');
+    Route::post('/admin/standar_lulusan/update/{id}', 'StandarLulusanController@update');
+    Route::get('/admin/standar_lulusan/view', 'StandarLulusanController@view');
+    Route::get('/show-standar-pengelolaan-pdf/{id}', function ($id) {
+        $file_standar_lulusan = StandarLulusan::find($id);
+        return response()->file(public_path('uploads/standar_lulusan/' . $file_standar_lulusan->file));
+    })->name('standar-lulusan.show-pdf');
 
+    // standar pendidik
+
+    Route::get('/admin/standar_pendidik', 'StandarPendidikController@index');
+    Route::get('/admin/standar_pendidik/edit/{id}', 'StandarPendidikController@edit');
+    Route::post('/admin/standar_pendidik/update/{id}', 'StandarPendidikController@update');
+    Route::get('/admin/standar_pendidik/view', 'StandarPendidikController@view');
+    Route::get('/show-standar-pendidik-pdf/{id}', function ($id) {
+        $file_standar_pendidik = StandarPendidik::find($id);
+        return response()->file(public_path('uploads/standar_pendidik/' . $file_standar_pendidik->file));
+    })->name('standar-pendidik.show-pdf');
+});
+
+
+
+// SUPER ADMIN
+Route::group(['middleware' => ['role:super-admin']], function () {
+    Route::get('/admin/jenis_standar', 'JenisStandarController@index');
+    Route::get('/admin/jenis_standar/create', 'JenisStandarController@create');
+    Route::post('/admin/jenis_standar/store', 'JenisStandarController@store');
+    Route::get('/admin/jenis_standar/edit/{id}', 'JenisStandarController@edit');
+    Route::post('/admin/jenis_standar/update/{id}', 'JenisStandarController@update');
+    Route::get('/admin/jenis_standar/destroy/{id}', 'JenisStandarController@destroy');
+});
+
+
+// All User
 Route::group(['middleware' => 'auth'], function () {
     // user
     Route::get('/user/password', 'UserController@password');
