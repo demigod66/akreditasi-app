@@ -71,21 +71,25 @@ Route::group(['middleware' => ['role:PIC_2|super-admin']], function () {
     Route::post('admin/standar_penilaian/store', 'StandarPenilaianController@store');
     Route::get('/admin/standar_penilaian/edit/{id}', 'StandarPenilaianController@edit');
     Route::post('/admin/standar_penilaian/update/{id}', 'StandarPenilaianController@update');
-    Route::get('/admin/standar_penilaian/view', 'StandarPenilaianController@view');
+    Route::get('/admin/standar_penilaian/view/{id}', 'StandarPenilaianController@view');
     Route::get('/show-standar-penilaian-pdf/{id}', function ($id) {
         $file_standar_penilaian = StandarPenilaian::find($id);
         return response()->file(public_path('uploads/standar_penilaian/' . $file_standar_penilaian->file));
     })->name('standar-penilaian.show-pdf');
+    Route::get('/admin/standar_penilaian/destroy/{id}', 'StandarPenilaianController@destroy');
 
     // standar sarana dan prasarana
     Route::get('/admin/standar_sarana', 'StandarSaranaController@index');
+    Route::get('/admin/standar_sarana/create', 'StandarSaranaController@create');
+    Route::post('/admin/standar_sarana/store', 'StandarSaranaController@store');
     Route::get('/admin/standar_sarana/edit/{id}', 'StandarSaranaController@edit');
     Route::post('/admin/standar_sarana/update/{id}', 'StandarSaranaController@update');
-    Route::get('/admin/standar_sarana/view', 'StandarSaranaController@view');
+    Route::get('/admin/standar_sarana/view/{id}', 'StandarSaranaController@view');
     Route::get('/show-standar-sarana-pdf/{id}', function ($id) {
         $file_standar_sarana = StandarSarana::find($id);
         return response()->file(public_path('uploads/standar_sarana/' . $file_standar_sarana->file));
     })->name('standar-sarana.show-pdf');
+    Route::get('/admin/standar_sarana/destroy/{id}', 'StandarSaranaController@destroy');
 });
 
 
@@ -94,13 +98,16 @@ Route::group(['middleware' => ['role:PIC_3|super-admin']], function () {
 
     // Standar Pembiayaan
     Route::get('/admin/standar_biaya', 'StandarBiayaController@index');
+    Route::get('admin/standar_biaya/create', 'StandarBiayaController@create');
+    Route::post('admin/standar_biaya/store', 'StandarBiayaController@store');
     Route::get('/admin/standar_biaya/edit/{id}', 'StandarBiayaController@edit');
     Route::post('/admin/standar_biaya/update/{id}', 'StandarBiayaController@update');
-    Route::get('/admin/standar_biaya/view', 'StandarBiayaController@view');
+    Route::get('/admin/standar_biaya/view/{id}', 'StandarBiayaController@view');
     Route::get('/show-standar-biaya-pdf/{id}', function ($id) {
         $file_standar_biaya = StandarBiaya::find($id);
-        return response()->file(public_path('uploads/standar_biaya/' . $file_standar_biaya->file));
+        return response()->file(public_path($file_standar_biaya->file));
     })->name('standar-biaya.show-pdf');
+    Route::get('admin/standar_biaya/destroy/{id}', 'StandarBiayaController@destroy');
 
     // standar pengelolaan
     Route::get('/admin/standar_pengelolaan', 'StandarPengelolaanController@index');

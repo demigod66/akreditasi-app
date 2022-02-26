@@ -7,6 +7,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="float-right">
+                    <a href="{{ url('admin/standar_biaya/create') }}" class="btn btn-primary btn-sm">Tambah Data</a>
                 </div>
             </div>
 
@@ -29,6 +30,8 @@
                         <tr>
                             <th width="10%">No</th>
                             <th>Standar Biaya</th>
+                            <th>Tahun Ajaran</th>
+                            <th>Tanggal Ditambahkan</th>
                             <th>File</th>
                             <th width="10%">Aksi</th>
                         </tr>
@@ -37,13 +40,18 @@
                         @foreach ( $standar_biaya as $sb )
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $sb->nama_stbiaya }}</td>
-                            <td><a href="{{ url('/admin/standar_biaya/view') }}" class="btn btn-warning btn-sm"><i
+                            <td>{{ $sb->jenis_standar }}</td>
+                            <td>{{ $sb->tahun }}</td>
+                            <td>{{ $sb->created_at }}</td>
+
+                            <td><a href="{{ url('/admin/standar_biaya/view', $sb->id) }}" class="btn btn-warning btn-sm"><i
                                         class="fas fa-file"></i></a>
                             </td>
                             <td>
                                 <a href="{{ url('admin/standar_biaya/edit', $sb->id) }}"
                                     class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
+                                    <a href="{{ url('admin/standar_biaya/destroy', $sb->id) }}"
+                                        class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
                         @endforeach

@@ -7,6 +7,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="float-right">
+                    <a href="{{ url('admin/standar_sarana/create') }}" class="btn btn-primary btn-sm">Tambah Data</a>
                 </div>
             </div>
 
@@ -28,7 +29,9 @@
                     <thead>
                         <tr>
                             <th width="10%">No</th>
-                            <th>Standar Sarana</th>
+                            <th>Jenis Standar Sarana</th>
+                            <th>Tahun Ajaran</th>
+                            <th>Tanggal Ditambahkan</th>
                             <th>File</th>
                             <th width="10%">Aksi</th>
                         </tr>
@@ -37,13 +40,17 @@
                         @foreach ( $standar_sarana as $ss )
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $ss->nama_stsarana }}</td>
-                            <td><a href="{{ url('/admin/standar_sarana/view') }}" class="btn btn-warning btn-sm"><i
+                            <td>{{ $ss->jenis_standar }}</td>
+                            <td>{{ $ss->tahun }}</td>
+                            <td>{{ $ss->created_at }}</td>
+                            <td><a href="{{ url('/admin/standar_sarana/view', $ss->id) }}" class="btn btn-warning btn-sm"><i
                                         class="fas fa-file"></i></a>
                             </td>
                             <td>
                                 <a href="{{ url('admin/standar_sarana/edit', $ss->id) }}"
                                     class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
+                                    <a href="{{ url('admin/standar_sarana/destroy', $ss->id) }}"
+                                        class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
                         @endforeach
