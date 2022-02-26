@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class StandarPengelolaan extends Model
 {
@@ -11,6 +11,17 @@ class StandarPengelolaan extends Model
 
     protected $fillable = [
         'nama_stpengelolaan',
-        'file'
+        'file',
+        'tahun'
     ];
+
+    public function getJenisStandar()
+    {
+        $data = DB::table('standar_pengelolaan')
+            ->join('jenis_standar', 'jenis_standar.id', '=', 'standar_pengelolaan.nama_stpengelolaan',)
+            ->select('standar_pengelolaan.*', 'jenis_standar.jenis_standar', 'jenis_standar.tahun')
+            ->get();
+
+        return $data;
+    }
 }

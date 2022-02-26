@@ -12,9 +12,6 @@ class StandarIsiController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['role:PIC_1|super-admin', 'permission:tambah content standar isi dan standar proses']);
-        $this->middleware(['role:PIC_1|super-admin', 'permission:edit content standar isi dan standar proses']);
-        $this->middleware(['role:PIC_1|super-admin', 'permission:hapus content standar isi dan standar proses']);
 
         $this->data = new StandarIsi();
     }

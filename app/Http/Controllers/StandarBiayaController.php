@@ -11,9 +11,8 @@ class StandarBiayaController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['role:PIC_3|super-admin', 'permission:tambah content standar penilaian dan standar sarana']);
-        $this->middleware(['role:PIC_3|super-admin', 'permission:edit content standar penilaian dan standar sarana']);
-        $this->middleware(['role:PIC_3|super-admin', 'permission:hapus content standar penilaian dan standar sarana']);
+        $this->middleware(['role:kepsek', 'permission:lihat content']);
+        $this->middleware(['role:PIC_3|super-admin', 'permission:lihat content|tambah content standar penilaian dan standar sarana|edit content standar penilaian dan standar sarana|hapus content standar penilaian dan standar sarana']);
         $this->data = new StandarBiaya();
     }
 
@@ -54,14 +53,15 @@ class StandarBiayaController extends Controller
     public function edit($id)
     {
         $standar_biaya = StandarBiaya::findorfail($id);
-        return view('admin.standar_biaya.edit', compact('standar_biaya'));
+        $data = JenisStandar::all();
+        return view('admin.standar_biaya.edit', compact('standar_biaya', 'data'));
     }
 
     public function update(Request $request, $id)
     {
         request()->validate([
             'nama_stbiaya' => 'required',
-            'file' => 'required',
+            'tahun' => 'required'
         ]);
 
         $standar_biaya = StandarBiaya::findorfail($id);
@@ -72,7 +72,7 @@ class StandarBiayaController extends Controller
             $file->move('uploads/standar_biaya', $new_file);
 
             if ($standar_biaya->file != '') {
-                unlink(public_path('uploads/standar_biaya/' . $standar_biaya->file));
+                unlink(public_path($standar_biaya->file));
             }
         }
 

@@ -8,22 +8,15 @@ use Illuminate\Http\Request;
 class JenisStandarController extends Controller
 {
 
-
-    public function __construct()
-    {
-        $this->middleware(['role:PIC_1|super-admin']);
-    }
-
     public function index()
     {
-
-        return view('admin.jenis_standar.index');
+        $data = JenisStandar::all();
+        return view('admin.jenis_standar.index', compact('data'));
     }
 
     public function create()
     {
-        $data = JenisStandar::all();
-        return view('admin.jenis_standar.create', compact('data'));
+        return view('admin.jenis_standar.create');
     }
 
     public function store(Request $request)

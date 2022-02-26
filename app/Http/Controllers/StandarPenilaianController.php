@@ -12,9 +12,6 @@ class StandarPenilaianController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['role:PIC_2|super-admin', 'permission:tambah content standar penilaian dan standar sarana']);
-        $this->middleware(['role:PIC_2|super-admin', 'permission:edit content standar penilaian dan standar sarana']);
-        $this->middleware(['role:PIC_2|super-admin', 'permission:hapus content standar penilaian dan standar sarana']);
         $this->data = new StandarPenilaian();
     }
 

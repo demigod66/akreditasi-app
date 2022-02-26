@@ -21,7 +21,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.7/pdfobject.min.js"></script>
 
 <script>
-    PDFObject.embed("{{ route('standar-pengelolaan.show-pdf', $standar_pengelolaan->id) }}", "#pdf-viewer");
+    PDFObject.embed("{{ url('/show-standar-pengelolaan-pdf', $standar_pengelolaan->id) }}", "#pdf-viewer");
 </script>
 
 

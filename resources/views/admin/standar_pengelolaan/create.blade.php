@@ -12,15 +12,15 @@
 
                     <div class="row justify-content-center">
                         <div class="col-md-6">
-                            <form action="{{ url('admin/standar_pengelolaan/update', $standar_pengelolaan->id) }}" method="POST"
-                                class="form-horizontal" enctype="multipart/form-data">
+                            <form action="{{ url('admin/standar_pengelolaan/store') }}" method="POST" class="form-horizontal"
+                                enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
-                                    <label>Jenis Standar Isi</label>
+                                    <label>Jenis Standar Pengelolaan</label>
                                     <select name="nama_stpengelolaan" id="nama_stpengelolaan" class="form-control">
                                         @foreach ($data as $js)
-                                            <option value="{{ $js->id }}" {{ $js->id == $standar_pengelolaan->nama_stpengelolaan }}>
-                                                {{ $js->jenis_standar }}</option>
+                                            <option value="" holder>-- Pilih Salah Satu --</option>
+                                            <option value="{{ $js->id }}">{{ $js->jenis_standar }}</option>
                                         @endforeach
                                     </select>
                                     @error('nama_stpengelolaan')
@@ -28,13 +28,13 @@
                                     @enderror
                                 </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-6">
                             <div class="form-group">
-                                <label>Tahun Ajaran</label>
+                                <label>Tahun</label>
                                 <select name="tahun" id="tahun" class="form-control">
                                     @foreach ($data as $js)
-                                        <option value="{{ $js->id }}" {{ $js->id == $standar_pengelolaan->tahun }}>
-                                            {{ $js->tahun }}</option>
+                                        <option value="" holder>-- Pilih Salah Satu --</option>
+                                        <option value="{{ $js->id }}">{{ $js->tahun }}</option>
                                     @endforeach
                                 </select>
                                 @error('tahun')
@@ -42,15 +42,18 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label>File</label>
-                            <input type="file" class="form-control" name="file" accept=".pdf">
-                            @error('file')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>File</label>
+                                <input type="file" class="form-control" name="file" accept=".pdf">
+                                @error('file')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-info btn-sm btn-block">Simpan</button>
                         </form>
+
                     </div>
 
                 </div>
