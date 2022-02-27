@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\UserController;
 use App\Models\StandarBiaya;
 use App\Models\StandarIsi;
 use App\Models\StandarLulusan;
