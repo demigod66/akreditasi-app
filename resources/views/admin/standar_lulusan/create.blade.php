@@ -18,8 +18,8 @@
                                 <div class="form-group">
                                     <label>Jenis Standar Lulusan</label>
                                     <select name="nama_stlulusan" id="nama_stlulusan" class="form-control">
+                                        <option value="" holder>-- Pilih Salah Satu --</option>
                                         @foreach ($data as $js)
-                                            <option value="" holder>-- Pilih Salah Satu --</option>
                                             <option value="{{ $js->id }}">{{ $js->jenis_standar }}</option>
                                         @endforeach
                                     </select>
@@ -32,8 +32,8 @@
                             <div class="form-group">
                                 <label>Tahun</label>
                                 <select name="tahun" id="tahun" class="form-control">
+                                    <option value="" holder>-- Pilih Salah Satu --</option>
                                     @foreach ($data as $js)
-                                        <option value="" holder>-- Pilih Salah Satu --</option>
                                         <option value="{{ $js->id }}">{{ $js->tahun }}</option>
                                     @endforeach
                                 </select>

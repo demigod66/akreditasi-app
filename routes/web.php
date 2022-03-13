@@ -70,7 +70,7 @@ Route::group(['middleware' => ['permission:lihat content standar penilaian dan s
 });
 
 
-Route::group(['middleware' => ['permission:lihat content standar penilaian dan standar sarana']], function () {
+Route::group(['middleware' => ['permission:lihat content standar pembiayaan dan standar pengelola']], function () {
     Route::get('/admin/standar_biaya/', 'StandarBiayaController@index');
     Route::get('/admin/standar_biaya/view/{id}', 'StandarBiayaController@view');
     Route::get('/show-standar-biaya-pdf/{id}', function ($id) {

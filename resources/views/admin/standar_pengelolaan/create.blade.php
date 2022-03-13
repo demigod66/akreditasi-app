@@ -12,14 +12,14 @@
 
                     <div class="row justify-content-center">
                         <div class="col-md-6">
-                            <form action="{{ url('admin/standar_pengelolaan/store') }}" method="POST" class="form-horizontal"
-                                enctype="multipart/form-data">
+                            <form action="{{ url('admin/standar_pengelolaan/store') }}" method="POST"
+                                class="form-horizontal" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <label>Jenis Standar Pengelolaan</label>
                                     <select name="nama_stpengelolaan" id="nama_stpengelolaan" class="form-control">
+                                        <option value="" holder>-- Pilih Salah Satu --</option>
                                         @foreach ($data as $js)
-                                            <option value="" holder>-- Pilih Salah Satu --</option>
                                             <option value="{{ $js->id }}">{{ $js->jenis_standar }}</option>
                                         @endforeach
                                     </select>
@@ -32,8 +32,8 @@
                             <div class="form-group">
                                 <label>Tahun</label>
                                 <select name="tahun" id="tahun" class="form-control">
+                                    <option value="" holder>-- Pilih Salah Satu --</option>
                                     @foreach ($data as $js)
-                                        <option value="" holder>-- Pilih Salah Satu --</option>
                                         <option value="{{ $js->id }}">{{ $js->tahun }}</option>
                                     @endforeach
                                 </select>

@@ -11,8 +11,6 @@ class StandarBiayaController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['role:kepsek', 'permission:lihat content']);
-        $this->middleware(['role:PIC_3|super-admin', 'permission:lihat content|tambah content standar penilaian dan standar sarana|edit content standar penilaian dan standar sarana|hapus content standar penilaian dan standar sarana']);
         $this->data = new StandarBiaya();
     }
 
